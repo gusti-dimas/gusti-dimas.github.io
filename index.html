@@ -1,11 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gusti Dimas</title>
+  <style>
+    :root {
+      --bg: #05070d;
+      --text: #fff;
+      --a: #5eead4;
+      --b: #818cf8;
+      --c: #f472b6;
+      --grid: rgba(255, 255, 255, .05)
+    }
+
+    @media (prefers-color-scheme:light) {
+      :root {
+        --bg: #f6f8fc;
+        --text: #0f172a;
+        --a: #0d9488;
+        --b: #6366f1;
+        --c: #ec4899;
+        --grid: rgba(0, 0, 0, .06)
+      }
+    }
+
+    * {
+      margin: 0;
+      box-sizing: border-box
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 48px 48px;
+      -webkit-mask-image: radial-gradient(circle at center, #000 20%, transparent 70%);
+      mask-image: radial-gradient(circle at center, #000 20%, transparent 70%)
+    }
+
+    .blob {
+      position: fixed;
+      width: 45vmax;
+      height: 45vmax;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .35;
+      animation: float 16s ease-in-out infinite alternate
+    }
+
+    .b1 {
+      background: var(--a);
+      top: -15%;
+      left: -10%
+    }
+
+    .b2 {
+      background: var(--b);
+      bottom: -20%;
+      right: -10%;
+      animation-delay: -5s
+    }
+
+    .b3 {
+      background: var(--c);
+      top: 30%;
+      left: 40%;
+      width: 30vmax;
+      height: 30vmax;
+      opacity: .22;
+      animation-delay: -9s
+    }
+
+    @keyframes float {
+      to {
+        transform: translate(8vw, -6vh) scale(1.15)
+      }
+    }
+
+    #glow {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, color-mix(in srgb, var(--a) 35%, transparent), transparent 65%);
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      transition: left .25s ease-out, top .25s ease-out
+    }
+
+    main {
+      position: relative;
+      text-align: center
+    }
+
+    h1 {
+      position: relative;
+      font-size: clamp(2.6rem, 11vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1;
+      text-align: center;
+      background: linear-gradient(110deg, var(--a), var(--b), var(--c), var(--a));
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 6s linear infinite, rise 1.2s cubic-bezier(.2, .8, .2, 1) both
+    }
+
+    @keyframes shine {
+      to {
+        background-position: -300% 0
+      }
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+        filter: blur(12px)
+      }
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      height: 3px;
+      width: 60px;
+      margin: 22px auto 0;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--a), var(--c));
+      animation: grow 1.4s .6s cubic-bezier(.2, .8, .2, 1) both
+    }
+
+    @keyframes grow {
+      from {
+        width: 0;
+        opacity: 0
+      }
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 28px;
+      animation: rise 1.2s .9s cubic-bezier(.2, .8, .2, 1) both
+    }
+
+    .links a {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--text);
+      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+      background: color-mix(in srgb, var(--text) 6%, transparent);
+      backdrop-filter: blur(8px);
+      transition: .25s
+    }
+
+    .links a:hover {
+      color: var(--a);
+      border-color: var(--a);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--a) 35%, transparent)
+    }
+
+    .links svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Welcome to my new site!</h1>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div id="glow"></div>
+
+  <main>
+    <h1>Hi</h1>
+    <nav class="links">
+      <a href="https://github.com/gusti-dimas" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z" />
+        </svg>
+      </a>
+      <a href="https://linkedin.com/in/gusti-dimas" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+        </svg>
+      </a>
+      <a href="https://instagram.com/gusti_dimas" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.63-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z" />
+        </svg>
+      </a>
+    </nav>
+  </main>
+
+  <script>
+    const g = document.getElementById("glow");
+    addEventListener("pointermove", e => { g.style.left = e.clientX + "px"; g.style.top = e.clientY + "px" });
+  </script>
 </body>
+
 </html>
